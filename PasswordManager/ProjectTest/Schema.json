@@ -1,0 +1,93 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-06/schema",
+  "title": "JSON Schema for list of accounts",
+  "type": "object",
+  "description": "Main Object",
+  "properties": {
+    "Db": {
+      "type": "array",
+      "description": "Array of the Accounts Saved by the user",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the company"
+          },
+          "Inventory": {
+            "type": "array",
+            "description": "Array of account information for that company",
+            "item": {
+              "type": "object",
+              "properties": {
+                "userid": {
+                  "type": "string",
+                  "description": "The userId of the user"
+                },
+                "passDb": {
+                  "type": "array",
+                  "item": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "description": "Value of the Password"
+                      },
+                      "strengthNum": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 101,
+                        "description": "Strength of the password entered"
+                      },
+                      "strengthText": {
+                        "type": "string",
+                        "description": "Gives the Label either Good...Bad",
+                        "enum": [
+                          "very weak",
+                          "weak",
+                          "good",
+                          "strong",
+                          "very strong"
+                        ]
+                      },
+                      "LastReset": {
+                        "type": "string",
+                        "description": "Date when the last time it was reseted"
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "strengthNum",
+                      "strengthText"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Password Object Info"
+                },
+                "loginUrl": {
+                  "type": "string",
+                  "decription": "The URL of the website of the Company",
+                  "format": "uri"
+                },
+                "AccountNum": {
+                  "type": "string",
+                  "description": "Account number of the user"
+                }
+              },
+              "required": [
+                "userId",
+                "passDb"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "name",
+          "Inventory"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}
